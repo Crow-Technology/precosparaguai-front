@@ -26,6 +26,8 @@ export const decryptAES = <T>(encryptedData: string, key: string): T => {
         if (data) {
             return JSON.parse(data) as T;
         }
+
+        return {} as T;
         // return JSON.parse(data) as T;
     } catch (error) {
         throw error;
