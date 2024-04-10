@@ -1,10 +1,10 @@
-'use client';
 
 import React, { createContext, useContext } from 'react';
-import { useGetBanners } from '@/lib/hooks';
 import { PageLoader } from '@/lib/components/shared';
+import { Suspense } from 'react';
 import { IBanner, IGroupedBanners, BannerSections } from '@/lib/types/ui.types';
 import { useMediaQuery } from 'react-responsive';
+import { getBanners } from '@/actions/banners';
 
 interface IBannerContext {
     banners: IBanner[];
@@ -25,9 +25,13 @@ export const useBannerContext = () => {
     return context;
 };
 
-export const BannerProvider = ({ children }: { children: React.ReactNode }) => {
+export const BannerProvider = async ({
+    children,
+}: {
+    children: React.ReactNode;
+}) => {
     const isMobile = useMediaQuery({ query: '(max-width:520px)' });
-    const { banners, isLoading } = useGetBanners();
+    const banners = await getBanners();
 
     const BannerGroupBy = (
         section: BannerSections
@@ -50,8 +54,10 @@ export const BannerProvider = ({ children }: { children: React.ReactNode }) => {
     };
 
     return (
-        <BannerContext.Provider value={{ banners, BannerGroupBy }}>
-            {isLoading ? <PageLoader /> : children}
-        </BannerContext.Provider>
+        <Suspense fallback={<PageLoader />}>
+            <BannerContext.Provider value={{ banners, BannerGroupBy }}>
+                {children}
+            </BannerContext.Provider>
+        </Suspense>
     );
 };

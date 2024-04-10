@@ -6,12 +6,7 @@ import Electrolux_brand from '@/../public/assets/Electrolux_brand.png';
 import JBL_brand from '@/../public/assets/JBL_brand.png';
 import Nespresso_brand from '@/../public/assets/Nespresso_brand.png';
 import samsung_brand from '@/../public/assets/samsung_brand.png';
-
-export interface IBrand {
-    _id: string;
-    icon: string;
-    title: string;
-}
+import { IBrand } from '@/lib/types/company.types';
 
 const brandFixcture = createFixture<IBrand>({} as IBrand);
 
