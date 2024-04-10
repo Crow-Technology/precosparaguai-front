@@ -1,10 +1,9 @@
-
 import React, { createContext, useContext } from 'react';
 import { PageLoader } from '@/lib/components/shared';
 import { Suspense } from 'react';
 import { IBanner, IGroupedBanners, BannerSections } from '@/lib/types/ui.types';
 import { useMediaQuery } from 'react-responsive';
-import { getBanners } from '@/actions/banners';
+import { getBanners } from '@/actions/banners.actions';
 
 interface IBannerContext {
     banners: IBanner[];
