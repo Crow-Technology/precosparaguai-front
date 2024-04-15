@@ -11,10 +11,10 @@ import {
 } from '@/lib/store/context/ProductContext';
 import { useGetBrands } from '@/lib/hooks/useGetBrands';
 import { IBrand } from '@/lib/types/company.types';
-import { getProducts } from '@/actions/products.actions';
+import { getCategories, getProducts } from '@/actions/products.actions';
 
 const ProductProvider = async ({ children }: { children: React.ReactNode }) => {
-    const products = await getProducts();
+    const { data: products } = await getProducts();
 
     const productFilterBy = (filter: ProductFilter): IProduct[] => {
         return products.filter((product) => product[filter]);
@@ -27,8 +27,13 @@ const ProductProvider = async ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-const CategoryProvider = ({ children }: { children: React.ReactNode }) => {
-    const { categories } = useGetProductCategories();
+const CategoryProvider = async ({
+    children,
+}: {
+    children: React.ReactNode;
+}) => {
+    const { data: categories } = await getCategories();
+
     const [currentCategory, setCurrentCategory] = useState<
         ICategory | undefined
     >(undefined);
