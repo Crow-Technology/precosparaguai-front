@@ -6,9 +6,9 @@ import React, {
     createContext,
     useContext,
 } from 'react';
-import { ICategory, IProduct } from '@/lib/interfaces';
-import { useGetProductCategories } from '@/lib/hooks/products';
-import { IBrand } from '@/lib/types/company.types';
+import { ICategory, IProduct } from '@/lib/types/product.types';
+// import { useGetProductCategories } from '@/lib/hooks/products';
+import { IBrand } from '@/lib/utils/fixtures/BrandsFixture';
 
 /// refactor
 export type ProductFilter = Exclude<

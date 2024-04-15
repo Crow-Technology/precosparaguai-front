@@ -1,6 +1,6 @@
 import { Options } from '@splidejs/react-splide';
 import { StaticImageData } from 'next/image';
-import { ICategory, IProduct } from '../interfaces';
+import { ICategory, IProduct } from './product.types';
 import { IBrand } from '../utils/fixtures/BrandsFixture';
 
 // SLIDER TYPES

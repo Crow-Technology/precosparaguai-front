@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { RadioGroup } from '@headlessui/react';
-import { ICurrency } from '@/lib/interfaces';
+import { ICurrency } from '@/lib/types/currency.types';
 import Image from 'next/image';
 
 interface IProps {

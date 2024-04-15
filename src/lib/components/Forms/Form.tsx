@@ -1,7 +1,7 @@
+import React from 'react';
 import { useForm } from '@/lib/hooks/auth';
 import { RegisterData } from '@/lib/types/auth.types';
-import React from 'react';
-import { IFormProps } from '@/lib/interfaces';
+import { IFormProps } from '@/lib/types/form.types';
 
 export const Form = ({ requestTo, FormContent }: IFormProps) => {
     const { handleSubmit, ...inputProps } = useForm<RegisterData>(requestTo);

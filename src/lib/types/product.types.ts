@@ -1,6 +1,7 @@
-import { StaticImageData } from 'next/image';
-import { IRating } from './IRating';
-import { LucideIcon } from 'lucide-react';
+export interface IRating {
+    rate: number;
+    count: number;
+}
 
 export interface ICategory {
     _id: string;

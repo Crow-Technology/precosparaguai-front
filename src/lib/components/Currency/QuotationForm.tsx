@@ -1,6 +1,6 @@
-import { ICurrency } from '@/lib/interfaces';
-import { moneyVO } from '@/lib/utils/format';
 import React, { useMemo, useState } from 'react';
+import { ICurrency } from '@/lib/types/currency.types';
+import { moneyVO } from '@/lib/utils/format';
 import { Input } from '@/lib/components/shared/Inputs';
 
 interface IProps {

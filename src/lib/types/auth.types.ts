@@ -1,3 +1,15 @@
+
+export interface IUserModelDemo {
+    _id: string;
+    username: string;
+    email: string;
+    hashedPassword: string;
+    timestamps: {
+        createdAt: Date;
+        updatedAt: Date;
+    };
+}
+
 export interface RegisterData {
     username?: string;
     email: string;

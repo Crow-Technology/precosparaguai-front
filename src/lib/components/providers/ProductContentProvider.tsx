@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IProduct, ICategory } from '@/lib/interfaces';
+import { IProduct, ICategory } from '@/lib/types/product.types';
 import { useGetProductCategories, useGetProducts } from '@/lib/hooks/products';
 import {
     ProductContext,

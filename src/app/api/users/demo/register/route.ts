@@ -3,7 +3,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import { createFixture } from '@/lib/utils/fixtures';
 import { NextResponse } from 'next/server';
-import { IUserModelDemo } from '@/lib/interfaces';
+import { IUserModelDemo } from '@/lib/types/auth.types';
 import bcrypt from 'bcrypt';
 
 export const POST = async (req: Request, res: Response) => {

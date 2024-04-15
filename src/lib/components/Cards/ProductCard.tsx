@@ -1,5 +1,5 @@
 import React from 'react';
-import { IProduct } from '@/lib/interfaces';
+import { IProduct } from '@/lib/types/product.types';
 import Image from 'next/image';
 import { Stars } from '@/lib/components';
 import { useCalculateAverageRating } from '@/lib/hooks';
