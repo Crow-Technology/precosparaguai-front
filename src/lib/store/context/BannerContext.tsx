@@ -30,7 +30,7 @@ export const BannerProvider = async ({
     children: React.ReactNode;
 }) => {
     const isMobile = useMediaQuery({ query: '(max-width:520px)' });
-    const banners = await getBanners();
+    const banners = await getBanners(); // server actions
 
     const BannerGroupBy = (
         section: BannerSections

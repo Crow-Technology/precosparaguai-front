@@ -30,7 +30,7 @@ export const ProductCard = ({ item }: IProductCardProps) => {
                 </Link>
             </div>
             <Link className="flex flex-col" href="#">
-                <figure className="relative mx-auto mt-10 block h-40 w-full">
+                <figure className="relative mx-auto  block h-40 w-full">
                     <Image
                         className="m-auto max-h-full min-w-full rounded-t-lg object-contain p-6"
                         src={item.image}
