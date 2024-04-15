@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { useBannerContext } from '@/lib/store/context/BannerContext';
 import Image from 'next/image';

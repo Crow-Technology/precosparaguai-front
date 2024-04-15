@@ -1,6 +1,6 @@
 'use server';
 
-import { IBanner } from '@/lib/types/ui.types';
+import { BannerSections, IBanner, PositionOptions } from '@/lib/types/ui.types';
 import { SemanaDoConsumidorFixture } from '@/lib/utils/fixtures/BannerFixture';
 
 export async function getBanners(): Promise<IBanner[]> {

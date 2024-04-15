@@ -1,7 +1,7 @@
 import { Options } from '@splidejs/react-splide';
 import { StaticImageData } from 'next/image';
 import { ICategory, IProduct } from './product.types';
-import { IBrand } from '../utils/fixtures/BrandsFixture';
+import { IBrand } from './company.types';
 
 // SLIDER TYPES
 export type sliderVariant = 'products' | 'banner' | 'full';

@@ -1,13 +1,19 @@
-'use client';
-
 import React from 'react';
 
+// import {
+//     SemanaDoConsumidor,
+//     CategorySection,
+//     HeroSection,
+//     MultiBannerSection,
+// } from '@/lib/components/Sections';
+
 import {
-    SemanaDoConsumidor,
-    CategorySection,
     HeroSection,
     MultiBannerSection,
+    CategorySection,
+    SemanaDoConsumidor,
 } from '@/lib/components/Sections';
+
 import { BannerProvider } from '@/lib/store/context/BannerContext';
 import { ProductSection } from '@/lib/components/Sections/Products';
 import { OfertaSection } from '../Sections/OfertaSection';

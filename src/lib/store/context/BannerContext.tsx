@@ -1,6 +1,5 @@
-import React, { createContext, useContext } from 'react';
-import { PageLoader } from '@/lib/components/shared';
-import { Suspense } from 'react';
+'use client';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { IBanner, IGroupedBanners, BannerSections } from '@/lib/types/ui.types';
 import { useMediaQuery } from 'react-responsive';
 import { getBanners } from '@/actions/banners.actions';
@@ -8,6 +7,8 @@ import { getBanners } from '@/actions/banners.actions';
 interface IBannerContext {
     banners: IBanner[];
     BannerGroupBy: (section: BannerSections) => Partial<IGroupedBanners>;
+    loading: boolean;
+    error: string | null;
 }
 
 const BannerContext = createContext<IBannerContext | undefined>(undefined);
@@ -29,8 +30,16 @@ export const BannerProvider = async ({
 }: {
     children: React.ReactNode;
 }) => {
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<string | null>(null);
     const isMobile = useMediaQuery({ query: '(max-width:520px)' });
     const banners = await getBanners(); // server actions
+
+    useEffect(() => {
+        if (banners) {
+            setLoading(false);
+        }
+    }, [banners]);
 
     const BannerGroupBy = (
         section: BannerSections
@@ -53,10 +62,8 @@ export const BannerProvider = async ({
     };
 
     return (
-        <Suspense fallback={<PageLoader />}>
-            <BannerContext.Provider value={{ banners, BannerGroupBy }}>
-                {children}
-            </BannerContext.Provider>
-        </Suspense>
+        <BannerContext.Provider value={{ banners, BannerGroupBy, loading, error }}>
+            {children}
+        </BannerContext.Provider>
     );
 };
