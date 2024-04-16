@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { IProduct, ICategory } from '@/lib/types/product.types';
-import { useGetProductCategories, useGetProducts } from '@/lib/hooks/products';
 import {
     ProductContext,
     CategoryContext,
@@ -12,8 +11,9 @@ import {
 import { useGetBrands } from '@/lib/hooks/useGetBrands';
 import { IBrand } from '@/lib/types/company.types';
 import { getCategories, getProducts } from '@/actions/products.actions';
+import { getBrands } from '@/actions/products.actions';
 
-const ProductProvider = async ({ children }: { children: React.ReactNode }) => {
+const ProductProvider = async ({ children }: PropsWithChildren) => {
     const { data: products } = await getProducts();
 
     const productFilterBy = (filter: ProductFilter): IProduct[] => {
@@ -27,11 +27,7 @@ const ProductProvider = async ({ children }: { children: React.ReactNode }) => {
     );
 };
 
-const CategoryProvider = async ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+const CategoryProvider = async ({ children }: PropsWithChildren) => {
     const { data: categories } = await getCategories();
 
     const [currentCategory, setCurrentCategory] = useState<
@@ -56,8 +52,8 @@ const CategoryProvider = async ({
     );
 };
 
-const BrandProvider = ({ children }: { children: React.ReactNode }) => {
-    const { brands } = useGetBrands();
+const BrandProvider = async ({ children }: PropsWithChildren) => {
+    const { data: brands } = await getBrands();
 
     const brandFilterBy = (filter: BrandFilter): IBrand[] => {
         return brands.filter((brand) => brand[filter] === filter);
