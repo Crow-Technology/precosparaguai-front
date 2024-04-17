@@ -1,7 +1,3 @@
-import dynamic from 'next/dynamic';
-
-const Home = dynamic(() => import('@/lib/pages/home'), {
-    ssr: false,
-});
+import Home from "@/lib/pages/home";
 
 export default Home;
