@@ -1,14 +1,14 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import { ICategory } from '@/lib/interfaces';
+import { ICategory } from '@/lib/types/product.types';
 import { Subdrawer } from './Subdrawer';
-import { Quotation } from '../Currency';
 import { SidebarCloseIcon } from 'lucide-react';
 import { useMediaQuery } from 'react-responsive';
 import { useCategoryContext } from '@/lib/store/context/ProductContext';
+import Quotation from '@/lib/components/Currency';
 
-export const Drawer = () => {
+export default function Drawer() {
     const isMobile = useMediaQuery({
         query: '(max-width: 480px)',
     });
@@ -82,4 +82,4 @@ export const Drawer = () => {
             />
         </>
     );
-};
+}

@@ -3,11 +3,11 @@
 import React, { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
 
-interface IProps {
+interface ISubCategoryItemProps {
     items: [string, string[]];
 }
 
-export const SubCategoryItem = ({ items }: IProps) => {
+export const SubCategoryItem = ({ items }: ISubCategoryItemProps) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [key, value] = items;
 

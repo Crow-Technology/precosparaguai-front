@@ -1,11 +1,6 @@
-import React from 'react';
+'use server';
 
-// import {
-//     SemanaDoConsumidor,
-//     CategorySection,
-//     HeroSection,
-//     MultiBannerSection,
-// } from '@/lib/components/Sections';
+import React from 'react';
 
 import {
     HeroSection,

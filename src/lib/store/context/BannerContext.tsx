@@ -1,10 +1,7 @@
-'use client';
 import React, {
     createContext,
     PropsWithChildren,
     useContext,
-    useEffect,
-    useState,
 } from 'react';
 import { IBanner, IGroupedBanners, BannerSections } from '@/lib/types/ui.types';
 import { useMediaQuery } from 'react-responsive';

@@ -1,14 +1,20 @@
-import React from 'react';
+'use client';
 
+import React from 'react';
+import dynamic from 'next/dynamic';
 import { Menu } from 'lucide-react';
-import { Drawer } from './Drawer';
+
+const Drawer = dynamic(() => import('@/lib/components/Sidebar/Drawer'), {
+    ssr: false,
+});
+
 import { useScroll } from '@/lib/hooks';
 
-interface IProps {
+interface ISideBarProps {
     menuBtnStyles?: React.CSSProperties;
 }
 
-export const SideBar = ({ menuBtnStyles }: IProps) => {
+export const SideBar = ({ menuBtnStyles }: ISideBarProps) => {
     const isMobile = useScroll();
 
     return (

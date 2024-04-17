@@ -8,7 +8,6 @@ import { useBannerContext } from '@/lib/store/context/BannerContext';
 export const HeroSection = () => {
     const { BannerGroupBy } = useBannerContext();
     const { isScrolled } = useScroll();
-
     const bannerGroup = BannerGroupBy('hero');
 
     return (

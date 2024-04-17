@@ -1,22 +1,11 @@
-'use client';
-
-import { ReactNode, Suspense } from 'react';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { PropsWithChildren, Suspense } from 'react';
+// import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ProductContentProvider } from './ProductContentProvider';
 
-const queryClient = new QueryClient();
-
-interface IProps {
-    children: ReactNode;
-}
-
-export const Providers = ({ children }: IProps) => {
+export const Providers = ({ children }: PropsWithChildren) => {
     return (
-        <QueryClientProvider client={queryClient}>
-            {/* <RequireAuth /> */}
-            <Suspense fallback={<div>Loading...</div>}>
-                <ProductContentProvider>{children}</ProductContentProvider>
-            </Suspense>
-        </QueryClientProvider>
+        <Suspense fallback={<div>Loading...</div>}>
+            <ProductContentProvider>{children}</ProductContentProvider>
+        </Suspense>
     );
 };
