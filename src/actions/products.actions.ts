@@ -5,7 +5,7 @@ import { ICategory, IProduct } from '@/lib/types/product.types';
 import { CategoryFactory } from '@/lib/utils/fixtures';
 import { BrandFactory } from '@/lib/utils/fixtures/BrandsFixture';
 import { httpService } from '@/lib/utils/http';
-import { IDataResponse } from '@/lib/types';
+import { IDataResponse } from '@/lib/types/query.types';
 
 const errorMessages = Object.freeze({
     productsNotFound: 'Products Not Found',

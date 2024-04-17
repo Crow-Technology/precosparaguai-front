@@ -8,10 +8,12 @@ import {
     BrandFilter,
     BrandContext,
 } from '@/lib/store/context/ProductContext';
-import { useGetBrands } from '@/lib/hooks/useGetBrands';
-import { IBrand } from '@/lib/types/company.types';
-import { getCategories, getProducts } from '@/actions/products.actions';
-import { getBrands } from '@/actions/products.actions';
+import { IBrand } from '@/lib/utils/fixtures/BrandsFixture';
+import {
+    getBrands,
+    getCategories,
+    getProducts,
+} from '@/actions/products.actions';
 
 const ProductProvider = async ({ children }: PropsWithChildren) => {
     const { data: products } = await getProducts();
@@ -66,11 +68,7 @@ const BrandProvider = async ({ children }: PropsWithChildren) => {
     );
 };
 
-export const ProductContentProvider = ({
-    children,
-}: {
-    children: React.ReactNode;
-}) => {
+export const ProductContentProvider = ({ children }: PropsWithChildren) => {
     return (
         <ProductProvider>
             <BrandProvider>

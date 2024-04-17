@@ -1,4 +1,4 @@
-import { IFormContentProps } from '@/lib/interfaces';
+import { IFormContentProps } from '@/lib/types/form.types';
 import React from 'react';
 import { Input } from '@/lib/components/shared';
 import { LockIcon, UserIcon } from 'lucide-react';
