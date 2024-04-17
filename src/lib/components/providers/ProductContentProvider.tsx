@@ -1,4 +1,4 @@
-import React, { PropsWithChildren, Suspense, useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { IProduct, ICategory } from '@/lib/types/product.types';
 import {
     ProductContext,
@@ -8,6 +8,7 @@ import {
     BrandFilter,
     BrandContext,
 } from '@/lib/store/context/ProductContext';
+import { useGetBrands } from '@/lib/hooks/useGetBrands';
 import { IBrand } from '@/lib/types/company.types';
 import { getCategories, getProducts } from '@/actions/products.actions';
 import { getBrands } from '@/actions/products.actions';
@@ -71,12 +72,10 @@ export const ProductContentProvider = ({
     children: React.ReactNode;
 }) => {
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <ProductProvider>
-                <BrandProvider>
-                    <CategoryProvider>{children}</CategoryProvider>
-                </BrandProvider>
-            </ProductProvider>
-        </Suspense>
+        <ProductProvider>
+            <BrandProvider>
+                <CategoryProvider>{children}</CategoryProvider>
+            </BrandProvider>
+        </ProductProvider>
     );
 };
