@@ -1,5 +1,5 @@
 import { useBannerContext } from '@/lib/store/context/BannerContext';
-import { Slider } from '../shared';
+import { Slider } from '../../shared';
 import React from 'react';
 
 interface IProps {}

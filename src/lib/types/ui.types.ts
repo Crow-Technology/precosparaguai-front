@@ -2,6 +2,7 @@ import { Options } from '@splidejs/react-splide';
 import { StaticImageData } from 'next/image';
 import { ICategory, IProduct } from './product.types';
 import { IBrand } from './company.types';
+import { _internal_ComponentDescription } from '@headlessui/react/dist/components/description/description';
 
 // SLIDER TYPES
 export type sliderVariant = 'products' | 'banner' | 'full';
@@ -32,15 +33,24 @@ export interface IProductSliderProps extends Partial<ISliderProps> {
 export type PositionOptions = 'left' | 'right' | 'top' | 'bottom' | 'full';
 export type BannerVariants = 'lg' | 'sm';
 
-export type BannerSections =
-    | 'semana_consumidor'
-    | 'hero'
-    | 'categorias'
-    | 'multibanner'
-    | 'ofertas'
-    | 'lancamentos'
-    | 'interior'
-    | 'services';
+export const BannerSectionsList = [
+    'semana_consumidor',
+    'hero',
+    'categorias',
+    'multibanner',
+    'ofertas',
+    'lancamentos',
+    'interior',
+    'services',
+] as const;
+
+export type BannerSectionsTuple = typeof BannerSectionsList;
+export type BannerSection = BannerSectionsTuple[number];
+
+export type BannerProviderData = Record<
+    BannerSection,
+    Partial<IGroupedBanners>
+>;
 
 export interface IBanner {
     _id: string;
@@ -49,11 +59,11 @@ export interface IBanner {
     images: Record<BannerVariants, string> | Record<BannerVariants, string[]>;
     image_alt: string;
     image_href?: string;
-    pageSection: BannerSections;
+    pageSection: BannerSection;
 }
 
-export interface IBannerGroup extends IBanner {
-    image: string;
+export interface IBannerGroup {
+    images: Record<BannerVariants, string> | Record<BannerVariants, string[]>;
 }
 
 export type IGroupedBanners = Record<PositionOptions, IBannerGroup[]>;

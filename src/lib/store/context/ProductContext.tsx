@@ -1,13 +1,7 @@
 'use client';
 
-import React, {
-    SetStateAction,
-    useState,
-    createContext,
-    useContext,
-} from 'react';
+import React, { SetStateAction, createContext, useContext } from 'react';
 import { ICategory, IProduct } from '@/lib/types/product.types';
-// import { useGetProductCategories } from '@/lib/hooks/products';
 import { IBrand } from '@/lib/types/company.types';
 
 /// refactor

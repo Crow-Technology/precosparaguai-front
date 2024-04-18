@@ -1,5 +1,4 @@
 import { PropsWithChildren, Suspense } from 'react';
-// import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { ProductContentProvider } from './ProductContentProvider';
 
 export const Providers = ({ children }: PropsWithChildren) => {

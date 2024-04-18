@@ -1,3 +1,4 @@
+export { useExtractImages } from './useExtractImages';
 import useSessionStorage from './useSessionStorage';
 
 export { useRatingStars, useCalculateAverageRating } from './useRatingStars';

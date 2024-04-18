@@ -1,14 +1,20 @@
 import React from 'react';
-import { useBannerContext } from '@/lib/store/context/BannerContext';
 import Image from 'next/image';
 import { Slider } from '@/lib/components/shared/Slider';
 import { useMediaQuery } from 'react-responsive';
+import { IGroupedBanners } from '@/lib/types/ui.types';
+import { useExtractImages } from '@/lib/hooks';
 
-export const SemanaDoConsumidor = () => {
+type SemanaDoConsumidorProps = Partial<IGroupedBanners>;
+
+export const SemanaDoConsumidor = ({
+    left,
+    right,
+}: SemanaDoConsumidorProps) => {
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' });
-    const { BannerGroupBy } = useBannerContext();
 
-    const { left, right } = BannerGroupBy('semana_consumidor');
+    const imagesLeft = useExtractImages(left, isMobile);
+    const imagesRight = useExtractImages(right, isMobile);
 
     return (
         <section className="container relative mt-0 flex justify-between lg:container lg:mt-5">
@@ -16,9 +22,9 @@ export const SemanaDoConsumidor = () => {
                 <div className="relative col-span-4 row-span-1 h-full w-full justify-between  sm:px-0 lg:col-span-3 ">
                     <Slider
                         variant="full"
-                        images={left
+                        images={imagesLeft
                             ?.toReversed()
-                            .map((banner) => banner.image)}
+                            .map((banner) => banner)}
                         progress={true}
                         options={{
                             fixedHeight: isMobile ? '480px' : '600px',
@@ -30,7 +36,7 @@ export const SemanaDoConsumidor = () => {
                 </div>
                 <div className="relative col-span-4 row-span-2 mt-4 w-full justify-self-center lg:col-span-1 lg:row-span-1 lg:mt-0 lg:justify-self-end">
                     <Image
-                        src={right?.[0]?.image || ''}
+                        src={imagesRight?.[0] || ''}
                         alt="aside banner"
                         objectFit="contain"
                         loading="lazy"

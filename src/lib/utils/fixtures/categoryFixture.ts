@@ -1,5 +1,5 @@
-import { ICategory } from '@/lib/interfaces';
 import { createFixture } from './createFixture';
+import { ICategory } from '@/lib/types/product.types';
 import { v4 as uuidv4 } from 'uuid';
 import {
     iconAudio,

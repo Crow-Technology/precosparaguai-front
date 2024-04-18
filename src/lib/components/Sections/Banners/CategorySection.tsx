@@ -1,5 +1,5 @@
 import React from 'react';
-import { Slider } from '../shared/Slider';
+import { Slider } from '../../shared/Slider';
 import { useCategoryContext } from '@/lib/store/context/ProductContext';
 
 export const CategorySection = () => {

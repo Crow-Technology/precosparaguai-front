@@ -1,6 +1,6 @@
 import { useBrandContext } from '@/lib/store/context/ProductContext';
 import React from 'react';
-import { Slider } from '../shared';
+import { Slider } from '../../shared';
 
 interface IProps {}
 

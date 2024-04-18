@@ -1,15 +1,18 @@
+'use client';
+
 import React, {
     createContext,
     PropsWithChildren,
     useContext,
+    useEffect,
+    useState,
 } from 'react';
-import { IBanner, IGroupedBanners, BannerSections } from '@/lib/types/ui.types';
+import { IBanner, IGroupedBanners, BannerSection } from '@/lib/types/ui.types';
 import { useMediaQuery } from 'react-responsive';
 import { getBanners } from '@/actions/banners.actions';
 
 interface IBannerContext {
     banners: IBanner[];
-    BannerGroupBy: (section: BannerSections) => Partial<IGroupedBanners>;
 }
 
 const BannerContext = createContext<IBannerContext | undefined>(undefined);
@@ -26,32 +29,28 @@ export const useBannerContext = () => {
     return context;
 };
 
-export const BannerProvider = async ({ children }: PropsWithChildren) => {
+export const BannerProvider = ({ children }: PropsWithChildren) => {
     const isMobile = useMediaQuery({ query: '(max-width:520px)' });
-    const banners = await getBanners(); // server actions
+    const [banners, setBanners] = useState<IBanner[]>([{}] as IBanner[]);
 
-    const BannerGroupBy = (
-        section: BannerSections
-    ): Partial<IGroupedBanners> => {
-        return banners.reduce((acc: IGroupedBanners, banner: IBanner) => {
-            if (banner.pageSection === section) {
-                const image = isMobile ? banner.images.sm : banner.images.lg;
+    useEffect(() => {
+        const fetchBanners = async () => {
+            const data = await getBanners();
 
-                return {
-                    ...acc,
-                    [banner.pos]: [
-                        ...(acc[banner.pos] || []),
-                        { ...banner, image },
-                    ],
-                };
-            }
+            setBanners(data);
+        };
 
-            return acc;
-        }, {} as IGroupedBanners);
-    };
+        fetchBanners();
+    }, [setBanners]);
+
+    useEffect(() => {
+        if (banners.length) {
+            console.log('banners', banners);
+        }
+    }, [banners]);
 
     return (
-        <BannerContext.Provider value={{ banners, BannerGroupBy }}>
+        <BannerContext.Provider value={{ banners }}>
             {children}
         </BannerContext.Provider>
     );

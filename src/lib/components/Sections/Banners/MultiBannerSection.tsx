@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { Slider } from '@/lib/components/shared';
 import { useMediaQuery } from 'react-responsive';
 import Link from 'next/link';
+import { GetStaticProps } from 'next';
+import { IBanner } from '@/lib/types/ui.types';
 
 export const MultiBannerSection = () => {
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' });

@@ -2,7 +2,7 @@ export { MultiBannerSection } from './MultiBannerSection';
 export { CategorySection } from './CategorySection';
 export { SemanaDoConsumidor } from './SemanaDoConsumidor';
 export { HeroSection } from './HeroSection';
-export { ProductSection } from './Products';
+export { ProductSection } from '../Products';
 export { OfertaSection } from './OfertaSection';
 export { ReleasesSection } from './ReleasesSection';
 export { InteriorSection } from './InteriorSection';
