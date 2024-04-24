@@ -1,18 +1,29 @@
-import { IBannerGroup } from '../types/ui.types';
+import { IBanner, IBannerGroup } from '../types/ui.types';
 
 export const useExtractImages = (
-    imageGroup: IBannerGroup[] | undefined,
+    imageGroup: IBannerGroup[] | IBannerGroup[][] | undefined,
     sizeCondition: boolean
 ) => {
-    return imageGroup
-        ?.reduce((acc: string[], banner) => {
-            const { lg, sm } = banner.images;
+    if (!imageGroup) return [];
 
-            if (sizeCondition) {
-                return Array.isArray(sm) ? [...sm] : [sm];
-            }
+    const extract = (group: IBannerGroup[]) => {
+        return group
+            ?.map((banner) => {
+                const { lg, sm } = banner.images;
 
-            return Array.isArray(lg) ? [...lg] : [lg];
-        }, [] as string[])
-        .flat();
+                if (sizeCondition) {
+                    return Array.isArray(sm) ? [...sm] : [sm];
+                }
+
+                return Array.isArray(lg) ? [...lg] : [lg];
+            })
+            .flat();
+    };
+
+    if (Array.isArray(imageGroup[0])) {
+        const imageMatrix = imageGroup as IBannerGroup[][];
+        return [...imageMatrix.map((group) => extract(group))];
+    }
+
+    return extract(imageGroup as IBannerGroup[]);
 };

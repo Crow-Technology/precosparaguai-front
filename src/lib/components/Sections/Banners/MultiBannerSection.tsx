@@ -5,41 +5,50 @@ import { Slider } from '@/lib/components/shared';
 import { useMediaQuery } from 'react-responsive';
 import Link from 'next/link';
 import { GetStaticProps } from 'next';
-import { IBanner } from '@/lib/types/ui.types';
+import { IBanner, IBannerGroup, IGroupedBanners } from '@/lib/types/ui.types';
+import { useExtractImages } from '@/lib/hooks';
 
-export const MultiBannerSection = () => {
+type MultiBannerSectionProps = Partial<IGroupedBanners>;
+
+export const MultiBannerSection = ({
+    full,
+    left,
+    right,
+}: MultiBannerSectionProps) => {
     const isMobile = useMediaQuery({ query: '(max-width: 520px)' });
-    const { BannerGroupBy } = useBannerContext();
 
-    const { full, left, right } = BannerGroupBy('multibanner');
-    const lastBanner = (full ?? [])[(full ?? []).length - 1] ?? {};
-
-    const MultiBannerSlider = [...(left ?? []), ...(right ?? [])].map(
-        (banner) => banner.image
+    const [imagesFull, imagesLeft, imagesRight] = useExtractImages(
+        [full, left, right] as IBannerGroup[][],
+        isMobile
     );
+
+    const lastBanner = Array.isArray(imagesFull) ? imagesFull.pop() : '';
+
+    const MultiBannerSlider = [
+        ...(imagesLeft ?? []),
+        ...(imagesRight ?? []),
+    ].map((banner) => banner);
 
     return (
         <section className="overflow-x-hidden">
             <div className="container ">
                 <div className="relative flex h-fit w-full flex-col items-center">
-                    {full
-                        ?.splice(0, full.length - 1)
-                        ?.map(({ _id, image, image_alt }) => (
-                            <Link
-                                className="mb-0 block  h-auto w-full px-0 md:mb-0"
-                                href="#"
-                            >
-                                <Image
-                                    key={_id}
-                                    src={image}
-                                    alt={image_alt}
-                                    loading="lazy"
-                                    className="w-full rounded-xl object-cover"
-                                    width={isMobile ? 320 : 1920}
-                                    height={isMobile ? 600 : 600}
-                                />
-                            </Link>
-                        ))}
+                    {imagesFull?.map(({ _id, image, image_alt }) => (
+                        <Link
+                            className="mb-0 block  h-auto w-full px-0 md:mb-0"
+                            href="#"
+                        >
+                            <Image
+                                key={_id}
+                                src={image}
+                                alt={image_alt}
+                                loading="lazy"
+                                className="w-full rounded-xl object-cover"
+                                width={isMobile ? 320 : 1920}
+                                height={isMobile ? 600 : 600}
+                            />
+                        </Link>
+                    ))}
                 </div>
                 <div className="banner-grid lg-mt-0 relative -mt-2 lg:mt-2">
                     {isMobile ? (
@@ -71,8 +80,8 @@ export const MultiBannerSection = () => {
                         href="#"
                     >
                         <Image
-                            src={lastBanner.image}
-                            alt={lastBanner.image_alt}
+                            src={lastBanner}
+                            alt={''}
                             loading="lazy"
                             className="w-full rounded-xl object-cover"
                             width={isMobile ? 320 : 1920}

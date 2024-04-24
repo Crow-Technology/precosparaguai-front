@@ -1,8 +1,9 @@
 import React from 'react';
 import { Slider } from '../../shared/Slider';
 import { useCategoryContext } from '@/lib/store/context/ProductContext';
+import { IGroupedBanners } from '@/lib/types/ui.types';
 
-export const CategorySection = () => {
+export const CategorySection = ({}) => {
     const { categories } = useCategoryContext();
 
     return (

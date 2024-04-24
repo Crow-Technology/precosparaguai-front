@@ -31,7 +31,12 @@ export default function Home({
                 {/* <SemanaDoConsumidor /> */}
 
                 <CategorySection />
-                <MultiBannerSection />
+
+                <Banner
+                    bannerData={banners['multibanner']}
+                    BannerContent={MultiBannerSection}
+                />
+                {/* <MultiBannerSection /> */}
 
                 {/* PRODUCTS */}
                 <ProductSection title="Destaques" />
